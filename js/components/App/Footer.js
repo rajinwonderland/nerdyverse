@@ -8,7 +8,7 @@ class Footer extends React.Component {
     return (
       <Row>
         <Col>
-          <p style={styles.footer}>Made with <FontAwesome name='heart'/> from the Scaphold team</p>
+          <p style={styles.footer}>nerdy[verse]</p>
         </Col>
       </Row>
     );

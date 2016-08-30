@@ -6,6 +6,7 @@ import Relay from 'react-relay';
 import { Router, Route, IndexRoute, applyRouterMiddleware, browserHistory, routes, hashHistory } from 'react-router';
 import useRelay from 'react-router-relay';
 import config from './../config';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import App from './components/App/App';
 import Home from './components/Home/Home';

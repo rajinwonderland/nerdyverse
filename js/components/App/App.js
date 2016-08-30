@@ -2,6 +2,7 @@ import React from 'react';
 import Relay from 'react-relay';
 import {Row, Col, Button, Jumbotron} from 'react-bootstrap';
 import {hashHistory} from 'react-router';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Header from './Header';
 import Hero from './Hero';
 import Description from './Description';
@@ -18,12 +19,14 @@ class App extends React.Component {
     }
 
     return (
+      <MuiThemeProvider>
       <div>
         <Header />
         <Hero />
         <Description />
         <Footer />
       </div>
+      </MuiThemeProvider>
     );
   }
 }

@@ -1,40 +1,55 @@
 import React from 'react';
 import Relay from 'react-relay';
 import {hashHistory} from 'react-router';
-import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap';
+import {AppBar, Drawer, MenuItem, IconButton} from 'material-ui';
+import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
+import {Navbar, Nav, NavItem, NavDropdown} from 'react-bootstrap';
 import Login from './Login';
 import Register from './Register';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+
+injectTapEventPlugin();
 
 class Header extends React.Component {
   constructor(props) {
     super(props);
-    this.goToGraphiQL = this.goToGraphiQL.bind(this);
-    this.goHome = this.goHome.bind(this);
+    this.state = {
+      open: false,
+    };
   }
 
-  goToGraphiQL() {
-    hashHistory.push('/graphiql');
+  toggleDrawer() {
+    this.setState({
+      open: !this.state.open
+    });
   }
 
-  goHome() {
-    hashHistory.push('/');
-  }
+
 
   render() {
     return (
-      <Navbar style={styles.navbar}>
-        <Navbar.Header>
-          <Navbar.Brand>
-            <a href="/">Scaphold</a>
-          </Navbar.Brand>
-        </Navbar.Header>
-        <Nav pullRight={true}>
-          <NavItem onClick={this.goHome}>Home</NavItem>
-          <NavItem onClick={this.goToGraphiQL}>GraphiQL</NavItem>
-          <Login />
-          <Register />
-        </Nav>
-      </Navbar>
+        <div>
+        <Drawer
+         docked={false}
+         width={this.state.open ? '25%' : 0}
+         open={this.state.open}
+         onRequestChange={this.toggleDrawer.bind(this)}>
+          <MenuItem>Comics</MenuItem>
+          <MenuItem>Sci-Fi</MenuItem>
+          <MenuItem>Anime</MenuItem>
+          <MenuItem>nerdy[gear]</MenuItem>
+        </Drawer>
+        <AppBar
+          title="nerdy[verse]"
+          titleStyle={styles.title}
+          onLeftIconButtonTouchTap={this.toggleDrawer.bind(this)}
+          isInitiallyOpen={true}
+          style={styles.navbar}
+          zDepth={1}
+        />
+
+
+        </div>
     );
   }
 }
@@ -46,6 +61,14 @@ export default Relay.createContainer(Header, {
 
 const styles = {
   navbar: {
-    marginBottom: 0
+    marginBottom: 0,
+    backgroundColor: '#cc0000',
+
+  },
+  title: {
+    fontSize: '1.2em',
+    fontWeight: "300",
+    fontFamily: 'HelveticaNeue',
+    color: '#fff'
   }
 };

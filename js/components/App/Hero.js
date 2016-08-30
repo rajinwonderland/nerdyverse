@@ -1,21 +1,37 @@
 import React from 'react';
 import Relay from 'react-relay';
-import {Row, Col, Button, Jumbotron} from 'react-bootstrap';
+import {Paper, } from 'material-ui';
+import { Slider, Slides, PrevArrow, NextArrow, Dots } from 'react-flex-slick';
 import FontAwesome from 'react-fontawesome';
+
+var slide1 = 'http://i.imgur.com/Qu2DVYt.png';
+var slide2 = 'http://i.imgur.com/HF5T6DS.png';
+var slide3 = 'http://i.imgur.com/Zcirc4S.png';
 
 class Hero extends React.Component {
   render() {
     return (
-      <Row>
-        <Col smOffset={2} sm={8}>
-          <Jumbotron style={styles.jumbotron}>
-            <h1>Welcome!</h1>
-            <p>Here you'll find Scaphold.io's Boilerplate React-Relay template :)</p>
-            <p><Button bsStyle="primary" bsSize="large" target="_blank" href="https://scaphold.io">Learn more <FontAwesome name="check" /></Button></p>
-            <p>Join our <a href="https://scapholdslackin.herokuapp.com/" target="_blank">Slack community</a>!</p>
-          </Jumbotron>
-        </Col>
-      </Row>
+      <Slider infinite swipe draggable >
+        <div/>
+        <Slides {...this.props}>
+          <div>
+            <Paper style={styles.paper} zDepth={1}>
+              <img src={slide1} style={styles.image}/>
+            </Paper>
+          </div>
+          <div>
+            <Paper style={styles.paper} zDepth={1}>
+              <img src={slide2} style={styles.image}/>
+            </Paper>
+          </div>
+          <div>
+            <Paper style={styles.paper} zDepth={1}>
+              <img src={slide3} style={styles.image}/>
+            </Paper>
+          </div>
+        </Slides>
+        <div/>
+      </Slider>
     );
   }
 }
@@ -26,9 +42,20 @@ export default Relay.createContainer(Hero, {
 });
 
 const styles = {
-  jumbotron: {
-    marginTop: 20,
-    borderRadius: 10,
-    textAlign: 'center'
+  paper: {
+    display: 'flex',
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    backgroundColor: 'white',
+    width: '100vw',
+    padding: 0,
+
+  },
+  image: {
+    width: '100%',
+    resizeMode: 'cover',
+    bottom: 0,
   }
 };
